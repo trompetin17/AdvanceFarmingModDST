@@ -53,3 +53,39 @@ end
 
 local fruits = {"pomegranate", "dragonfruit", "cave_banana", "hybrid_banana"}
 AddIngredientValues(fruits, {fruit=1}, true)
+
+-- changing crop component
+local function changeCropAction(self)
+	print("crop component instance detected")
+	local oldResume = self.Resume
+	local oldDoGrow = self.DoGrow
+
+	function self:Resume()
+		if (self.grower and self.grower:HasTag("g_house"))  then
+			self.inst.AnimState:SetMultColour(1, 1, 1, .5)
+		end
+		oldResume(self)
+	end
+
+	function self:DoGrow(dt, nowither)
+		oldDoGrow(self, dt, nowither)
+		if not self.inst:HasTag("withered") then
+			if (self.grower and self.grower:HasTag("g_house")) then
+				self.inst.AnimState:SetMultColour(1, 1, 1, .5)
+			end
+
+			if self.cantgrowtime == 0 then
+				if self.grower and self.grower:HasTag("g_house") and (GLOBAL.TheWorld.state.iswinter and GLOBAL.TheWorld.state.temperature <= 0) then
+					self.growthpercent = self.growthpercent + dt * self.rate
+				end
+			end
+		end
+	end
+end
+
+AddComponentPostInit("crop", changeCropAction)
+
+
+
+
+

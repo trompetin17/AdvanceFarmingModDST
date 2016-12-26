@@ -50,15 +50,6 @@ configuration_options =
 		default = "yes",
 	},
 	{
-		name = "",
-		label = "",
-		options =
-		{
-			{description = "", data = 0}
-		},
-		default = 0
-	},
-	{
 		name = "W_Grow",
 		label = "Bananas In Winter ?",
         hover = "Choose to enable or disable if your Hybrid Banana Trees grow fruit in winter",
@@ -68,5 +59,29 @@ configuration_options =
 			{description = "Yes", data = "yes", hover = "Hybrid Banana Trees will grow fruit in winter"}
 		},
 		default = "yes"
-	}
+	},
+	{
+		name = "b_banana_room",
+		label = "Enable Banana Trees Room?",
+		hover = "Choose to enable or disable if your Hybrid Banana Trees should have a room in world",
+		options =
+		{
+			{description = "No", data = "no"},
+			{description = "Yes", data = "yes"}
+		},
+		default = "no"
+	},
+	{
+		name = "banana_tree_rate",
+		label = "Banana Spawn Rate",
+		options =
+		{
+			{description = "Rare", data = 0.2},
+			{description = "Uncommon", data = 0.5},
+			{description = "Common", data = 1},
+			{description = "Plentiful", data = 2},
+			{description = "Stonerland", data = 4}
+		},
+		default = 0.2
+	},
 }

@@ -43,6 +43,7 @@ end
 
 local function setupstump(inst)
 	inst.stump = true
+	RemovePhysicsColliders(inst)
 	inst:RemoveComponent("pickable")
 	inst.components.workable:SetWorkAction(ACTIONS.DIG)
 	inst.components.workable:SetWorkLeft(1)
@@ -71,6 +72,7 @@ local function chopped(inst, worker)
 		inst.components.lootdropper:SpawnLootPrefab("log")
 		inst.components.lootdropper:SpawnLootPrefab("twigs")
 		inst.components.lootdropper:SpawnLootPrefab("twigs")
+
 		inst.AnimState:Hide("BANANA")
 		if inst.components.pickable and inst.components.pickable.canbepicked then
 			inst.components.lootdropper:SpawnLootPrefab("cave_banana")
